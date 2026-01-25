@@ -1,5 +1,4 @@
 function saveTask() {
-
   const title = $("#txtTitle").val();
   const desc = $("#txtDescription").val();
   const color = $("#selColor").val();
@@ -14,8 +13,7 @@ function saveTask() {
   displayTask(taskToSave);
 }
 
-function displayTask(task)
-{
+function displayTask(task) {
   let syntax = `
     <div class="task" style="border-color:${task.color}">
       <div class="info">
@@ -28,24 +26,22 @@ function displayTask(task)
   $(".list").append(syntax);
 }
 
-const API="https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
+const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
 
 $.ajax({
   type: "GET",
   url: API,
   dataType: "json",
-
-  success: function(data) {
+  success: function (data) {
     console.log("Server responded with:", data);
   },
-
-  error: function(x) {
+  error: function (x) {
     console.log("Error fetching data:", x);
   }
 });
 
-function init(){
-  $("#btnSave").click(saveTask)
+function init() {
+  $("#btnSave").click(saveTask);
 }
 
 window.onload = init;
