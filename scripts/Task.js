@@ -1,13 +1,10 @@
 class Task {
-    constructor(title, description, color, date, status, budget) {  //A parameter is a placeholder name for data that a function or method expects.
-        this.title = title;//Parameters = names (placeholders) title, description, color, date, status, budget
-        this.desc = description;// Values come from the user's input in the HTML form
-        this.color = color; //desc= Note: mapped to desc internally
+    constructor(title, description, color, date, status, budget) {
+        this.title = title;
+        this.desc = description;
+        this.color = color;
         this.date = date;
         this.status = status;
         this.budget = budget;
     }
 }
-
-// Note: To format this file (auto-fix spacing/indentation so the code looks neat and consistent) in VS Code,
-// right-click and select "Format Document".

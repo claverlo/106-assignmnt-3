@@ -6,7 +6,7 @@ body {
   padding: 20px;
 }
 
-/* The Card Container */
+
 .card {
   background-color: #ffffff;
   border-radius: 8px;
@@ -15,7 +15,7 @@ body {
   margin-bottom: 20px;
 }
 
-/* Modern Responsive Grid */
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
