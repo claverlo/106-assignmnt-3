@@ -45,3 +45,24 @@ function init() {
 }
 
 window.onload = init;
+
+
+
+/*Big picture 
+
+You type:
+
+Title: “Pay rent”
+
+Color: “red”
+Then click Save.
+
+saveTask() does:
+
+reads “Pay rent”
+
+creates new Task("Pay rent", ...)
+
+prints it in console
+
+shows it in the list
