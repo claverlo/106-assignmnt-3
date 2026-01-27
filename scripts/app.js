@@ -24,6 +24,7 @@ function saveTask() {
   }
 
   const taskToSave = new Task(title, desc, color, date, status, budget);
+<<<<<<< HEAD
 
   $.ajax({
     type: "POST",
@@ -44,6 +45,9 @@ function saveTask() {
       console.log("Error saving task:", x);
     }
   });
+=======
+  displayTask(taskToSave);
+>>>>>>> 45b9437c8e239ab2c0cfe247c9e35a0bb9c77a86
 }
 
 function displayTask(task) {
@@ -65,6 +69,23 @@ function displayTask(task) {
 
 $(".list").on("click", ".delete-btn", function () {
   $(this).closest(".task").remove();
+<<<<<<< HEAD
+=======
+});
+
+const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
+
+$.ajax({
+  type: "GET",
+  url: API,
+  dataType: "json",
+  success: function (data) {
+    console.log("Server responded with:", data);
+  },
+  error: function (x) {
+    console.log("Error fetching data:", x);
+  }
+>>>>>>> 45b9437c8e239ab2c0cfe247c9e35a0bb9c77a86
 });
 
 function loadTasks() {
