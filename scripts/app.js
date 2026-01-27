@@ -6,6 +6,22 @@ function saveTask() {
   const status = $("#selStatus").val();
   const budget = $("#numBudget").val();
 
+  // JS VALIDATION)
+  if (!title || title.length < 3) {
+    alert("Title is required and must be at least 3 characters.");
+    return;
+  }
+
+  if (!date) {
+    alert("Please select a date.");
+    return;
+  }
+
+  if (budget && budget < 0) {
+    alert("Budget cannot be negative.");
+    return;
+  }
+
   const taskToSave = new Task(title, desc, color, date, status, budget);
 
   console.log(taskToSave);
@@ -13,18 +29,23 @@ function saveTask() {
   displayTask(taskToSave);
 }
 
+
 function displayTask(task) {
   let syntax = `
     <div class="task" style="border-color:${task.color}">
       <div class="info">
         <h4>${task.title}</h4>
         <p>${task.desc}</p>
+        <p>Status: ${task.status}</p>
+        <p>Date: ${task.date}</p>
+        <p>Budget: $${task.budget}</p>
       </div>
     </div>
   `;
 
   $(".list").append(syntax);
 }
+
 
 const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
 

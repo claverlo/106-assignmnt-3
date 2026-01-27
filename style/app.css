@@ -1,21 +1,46 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f4f7f9; /* Soft background */
+  background-color: #f4f7f9;
   color: #333;
   margin: 0;
   padding: 20px;
 }
 
-/* The Card Container */
+header h1 {
+  margin-bottom: 4px;
+}
+
+header p {
+  margin-top: 0;
+  color: #666;
+}
+
 .card {
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   padding: 20px;
   margin-bottom: 20px;
 }
 
-/* Modern Responsive Grid */
+main {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+#task-section {
+  flex: 1;
+  width: 50%;
+  min-width: 320px;
+}
+
+#list-section {
+  flex: 1;
+  width: 50%;
+  min-width: 320px;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -23,11 +48,12 @@ body {
   margin-bottom: 20px;
 }
 
-input, select, button {
+input,
+select {
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
+  border-radius: 6px;
+  font-size: 0.95rem;
   margin-top: 5px;
 }
 
@@ -35,26 +61,76 @@ button {
   background-color: #303f9f;
   color: white;
   border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 0.95rem;
+  transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 button:hover {
   background-color: #1a237e;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-main {                   /* Whatever you put on the parent (main) controls the layout of its children */
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+.task {
+  border-left: 6px solid #ccc;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#task-section {
-  flex: 3;
-  min-width: 300px;
+.task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
 }
 
-#list-section {
-  flex: 1;
-  min-width: 300px;
+.task h4 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.task .info p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status.New {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status.In\ Progress {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.status.Completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+  }
+
+  #task-section,
+  #list-section {
+    width: 100%;
+  }
 }
