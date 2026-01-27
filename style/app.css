@@ -1,6 +1,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f4f7f9;
+  background-color: #4490c3;
   color: #333;
   margin: 0;
   padding: 20px;
@@ -133,4 +133,57 @@ button:hover {
   #list-section {
     width: 100%;
   }
+}
+
+.task-list-box {
+  border: 3px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  height: 70vh;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.task-list-box .list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.delete-btn {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 12px;
+  height: fit-content;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }

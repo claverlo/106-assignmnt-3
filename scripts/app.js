@@ -4,9 +4,8 @@ function saveTask() {
   const color = $("#selColor").val();
   const date = $("#selDate").val();
   const status = $("#selStatus").val();
-  const budget = $("#numBudget").val();
+  const budget = Number($("#numBudget").val());
 
-  // JS VALIDATION)
   if (!title || title.length < 3) {
     alert("Title is required and must be at least 3 characters.");
     return;
@@ -17,22 +16,18 @@ function saveTask() {
     return;
   }
 
-  if (budget && budget < 0) {
+  if (budget < 0) {
     alert("Budget cannot be negative.");
     return;
   }
 
   const taskToSave = new Task(title, desc, color, date, status, budget);
-
-  console.log(taskToSave);
-
   displayTask(taskToSave);
 }
 
-
 function displayTask(task) {
   let syntax = `
-    <div class="task" style="border-color:${task.color}">
+    <div class="task" style="border-left-color:${task.color}">
       <div class="info">
         <h4>${task.title}</h4>
         <p>${task.desc}</p>
@@ -40,12 +35,16 @@ function displayTask(task) {
         <p>Date: ${task.date}</p>
         <p>Budget: $${task.budget}</p>
       </div>
+      <button class="delete-btn">Delete</button>
     </div>
   `;
 
   $(".list").append(syntax);
 }
 
+$(".list").on("click", ".delete-btn", function () {
+  $(this).closest(".task").remove();
+});
 
 const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
 
@@ -66,24 +65,3 @@ function init() {
 }
 
 window.onload = init;
-
-
-
-/*Big picture 
-
-You type:
-
-Title: “Pay rent”
-
-Color: “red”
-Then click Save.
-
-saveTask() does:
-
-reads “Pay rent”
-
-creates new Task("Pay rent", ...)
-
-prints it in console
-
-shows it in the list
