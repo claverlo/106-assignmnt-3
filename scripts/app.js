@@ -96,35 +96,31 @@ function update() {
 
 
 
-function loadTasks() {
-  $.ajax({
-    type: "GET",
-    url: API,
-    dataType: "json",
-    success: function (data) {
-      $(".list").html("");
+function loadTask() {
+  $.ajax(
+    {
+      type: "GET", //HTTP Verb. READ
+      url: API, //destination
+      dataType: "json", //expected format
+      success: function (data) {
+        console.log("Server responded with: ", data);
+        $(".list").empty(); //clear the list to avoid duplicates
 
-      (data || []).forEach(function (t) {
-        const taskObj = new Task(
-          t.title,
-          t.description,
-          t.color,
-          t.date,
-          t.status,
-          Number(t.budget)
-        );
-        displayTask(taskObj);
-      });
-    },
-    error: function (x) {
-      console.log("Error loading tasks:", x);
+        //loop through the array of tasks
+        for (let i = 0; i < data.length; i++) {
+          displayTask(data[i]);
+        }
+      },
+      error: function (x) {
+        console.log("Error fetching data: ", x);
+      }
     }
-  });
+  );
 }
 
 function init() {
   $("#btnSave").click(saveTask);
-  loadTasks();
+  loadTask();
 }
 
 window.onload = init;
