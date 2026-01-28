@@ -2,7 +2,7 @@ const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/ta
 
 function saveTask() {
   const title = $("#txtTitle").val();
-  const desc = $("#txtDescription").val();
+  const description = $("#txtDescription").val(); 
   const color = $("#selColor").val();
   const date = $("#selDate").val();
   const status = $("#selStatus").val();
@@ -17,37 +17,27 @@ function saveTask() {
     alert("Please select a date.");
     return;
   }
-// comment
+
   if (budget < 0) {
     alert("Budget cannot be negative.");
     return;
   }
 
-  const taskToSave = new Task(title, desc, color, date, status, budget);
-<<<<<<< HEAD
+  const taskToSave = new Task(title, description, color, date, status, budget);
 
   $.ajax({
-    type: "POST",
+    type: "POST", // HTTP Verb: Create
     url: API,
+    data: JSON.stringify(taskToSave),
     contentType: "application/json",
-    data: JSON.stringify({
-      title: taskToSave.title,
-      description: taskToSave.desc,
-      color: taskToSave.color,
-      date: taskToSave.date,
-      status: taskToSave.status,
-      budget: taskToSave.budget
-    }),
-    success: function () {
-      displayTask(taskToSave);
+    success: function (created) {
+      console.log(created);
+      displayTask(created);
     },
-    error: function (x) {
-      console.log("Error saving task:", x);
+    error: function (err) {
+      console.log(err);
     }
   });
-=======
-  displayTask(taskToSave);
->>>>>>> 45b9437c8e239ab2c0cfe247c9e35a0bb9c77a86
 }
 
 function displayTask(task) {
@@ -55,7 +45,7 @@ function displayTask(task) {
     <div class="task" style="border-left-color:${task.color}">
       <div class="info">
         <h4>${task.title}</h4>
-        <p>${task.desc}</p>
+        <p>${task.description}</p> <!-- CHANGED -->
         <p>Status: ${task.status}</p>
         <p>Date: ${task.date}</p>
         <p>Budget: $${task.budget}</p>
@@ -69,24 +59,42 @@ function displayTask(task) {
 
 $(".list").on("click", ".delete-btn", function () {
   $(this).closest(".task").remove();
-<<<<<<< HEAD
-=======
 });
 
-const API = "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks";
+function deleteEntry() {
+  $.ajax({
+    type: "DELETE",
+    url: "https://106api-bobnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks/1",
+    success: function (response) {
+      console.log("the element was removed", response);
+    },
+    error: function (fail) {
+      console.log(fail);
+    }
+  });
+}
 
-$.ajax({
-  type: "GET",
-  url: API,
-  dataType: "json",
-  success: function (data) {
-    console.log("Server responded with:", data);
-  },
-  error: function (x) {
-    console.log("Error fetching data:", x);
-  }
->>>>>>> 45b9437c8e239ab2c0cfe247c9e35a0bb9c77a86
-});
+
+
+function update() {
+  $.ajax({
+    type: "PUT",
+    url: "https://106api-b0bnggbsgnezbzcz.westus3-01.azurewebsites.net/api/tasks/1",
+    data: JSON.stringify({
+      title: "Hello world",
+      budget: 999999
+    }),
+    contentType: "application/json",
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (notresponse) {
+      console.log(notresponse);
+    }
+  });
+}
+
+
 
 function loadTasks() {
   $.ajax({
